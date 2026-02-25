@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
-
-const API_URL = import.meta.env.VITE_API_URL + '/products/categories';
+import { fetchCategories } from "../api/products";
 
 let cachedCategories: string[] | null = null;
 
@@ -18,23 +17,20 @@ export function useCategories() {
     useEffect(() => {
         if (cachedCategories) return;
 
-        async function load() {
-        try {
-            setLoading(true);
-            const res = await fetch(API_URL);
-            if (!res.ok) throw new Error('Failed to fetch categories');
-            const data = await res.json();
-            // Capitalize each category
-            const formatted = data.map(capitalizeCategory);
-            cachedCategories = [AllProductsCategory, ...formatted];
-            setCategories(cachedCategories);
-        } catch (err) {
-            setError((err as Error).message);
-        } finally {
-            setLoading(false);
-        }
-        }
-        load();
+        setLoading(true);
+        setError(null);
+        
+        fetchCategories()
+            .then((data) => {
+                cachedCategories = data;
+                setCategories(data);
+            })
+            .catch((err) => {
+                setError(err instanceof Error ? err.message : "API error");
+            })
+            .finally(() => {
+                setLoading(false);
+            });
     }, []);
 
     return { categories, loading, error };

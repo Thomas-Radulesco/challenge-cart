@@ -1,22 +1,38 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useUser } from '../contexts/UserContext';
 import { useProducts } from '../hooks/useProducts';
-import { useCart } from '../contexts/CartContext';
 import { useParams } from 'react-router-dom';
 import { AllProductsCategory, capitalizeCategory } from '../hooks/useCategories';
+import { ProductCard } from '../components/product/ProductCard';
+import { SecondaryButton } from '../components/common/Buttons';
+import { SkeletonCard } from '../components/product/SkeletonCard';
 
 export default function HomePage() {
     const { products, loading, error } = useProducts();
     const { user } = useUser();
-    const { add } = useCart();
     const { name: category } = useParams();
     const normalizedCategory = category?.toLowerCase();
     const location = useLocation();
     const params = new URLSearchParams(location.search);
     const q = params.get('q');
     const cat = params.get('cat');
+    
+    if (loading) {
+        return (
+            <div
+                style={{
+                    display: "grid",
+                    gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))",
+                    gap: "1rem",
+                }}
+                >
+                {Array.from({ length: 8 }).map((_, i) => (
+                    <SkeletonCard key={i} />
+                ))}
+            </div>
+        );
+    }
 
-    if (loading) return <p>Loading products...</p>;
     if (error) return <p>Error: {error}</p>;
     if (!products) return <p>No products found.</p>;
 
@@ -51,24 +67,24 @@ export default function HomePage() {
         ) : (
             <>
             <p>You are not logged in.</p>
-            <Link to="/login">Go to Login</Link>
+                <SecondaryButton component={Link} to="/login" >
+                    Login
+                </SecondaryButton>
             </>
         )}
 
         <div>
         <h1>Products</h1>
 
-        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+        <div
+            style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))",
+                gap: "1rem",
+            }}
+        >
             {filtered.map((p) => (
-            <div key={p.id} style={{ border: '1px solid #ccc', padding: '1rem' }}>
-                <img src={p.image} alt={p.title} width={150} />
-                <h3>{p.title}</h3>
-                <p>${p.price.toFixed(2)}</p>
-                <button onClick={() => add({ ...p, quantity: 1 })}
-                >
-                    Add to Cart
-                </button>
-            </div>
+                <ProductCard key={p.id} product={p} />
             ))}
         </div>
         </div>

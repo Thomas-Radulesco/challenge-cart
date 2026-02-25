@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useMediaQuery, useTheme } from '@mui/material';
-import AppBar from '@mui/material/AppBar';
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
 import Button from '@mui/material/Button';
@@ -11,7 +10,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useCart } from '../../contexts/CartContext';
 import { useUser } from '../../contexts/UserContext';
-import { AllProductsCategory, useCategories } from '../../hooks/useCategories';
+import { AllProductsCategory, useCategories, capitalizeCategory } from '../../hooks/useCategories';
 import { useProducts } from '../../hooks/useProducts';
 import kiboLogo from '../../assets/kibo_logo.png';
 import PersonIcon from '@mui/icons-material/Person';
@@ -30,11 +29,10 @@ import {
     Highlight,
     SearchIconWrapper
 } from './Navbar.styles';
-
+import { SecondaryButton } from '../common/Buttons';
 
 export default function Navbar() {
     const navigate = useNavigate();
-    const theme = useTheme();
     const isMobile = useMediaQuery('(max-width:519px)');
     const isTablet = useMediaQuery('(min-width:520px) and (max-width:900px)');
     const searchRef = useRef<HTMLDivElement>(null);
@@ -63,7 +61,9 @@ export default function Navbar() {
     };
 
     const handleCategorySelect = (cat: string) => {
-        setSelectedCategory(cat);
+        const capitalizedCategory = capitalizeCategory(cat);
+        
+        setSelectedCategory(capitalizedCategory);
 
         if (cat === AllProductsCategory) {
             navigate('/');
@@ -145,13 +145,8 @@ export default function Navbar() {
         setSuggestions([]);
     };
 
-    // CART COUNT
-    // const cartCount = items.reduce((sum, item) => sum + item.quantity, 0);
-
     return (
         <StyledAppBar position="static">
-        {/* // <AppBar position="static"> */}
-        {/* // <AppBar position="static" sx={{ backgroundColor: '#3b3b3b', color: '#000' }}> */}
 
             <StyledToolbar>
                 {isMobile ? (
@@ -184,7 +179,7 @@ export default function Navbar() {
                                                 key={cat}
                                                 onClick={() => handleCategorySelect(cat)}
                                             >
-                                                {cat}
+                                                {capitalizeCategory(cat)}
                                             </MenuItem>
                                         ))}
                                     </Menu>
@@ -236,7 +231,7 @@ export default function Navbar() {
                                                 key={cat}
                                                 onClick={() => handleCategorySelect(cat)}
                                             >
-                                                {cat}
+                                                {capitalizeCategory(cat)}
                                             </MenuItem>
                                         ))}
                                     </Menu>

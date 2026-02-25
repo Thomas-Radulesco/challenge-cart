@@ -8,9 +8,9 @@ export const CLEAR_CART = 'CLEAR_CART';
 
 export type CartAction =
   | { type: typeof ADD_ITEM; payload: CartItem }
-  | { type: typeof REMOVE_ITEM; payload: { id: string } }
-  | { type: typeof INCREMENT; payload: { id: string } }
-  | { type: typeof DECREMENT; payload: { id: string } }
+  | { type: typeof REMOVE_ITEM; payload: { id: number } }
+  | { type: typeof INCREMENT; payload: { id: number } }
+  | { type: typeof DECREMENT; payload: { id: number } }
   | { type: typeof CLEAR_CART };
 
 
@@ -21,17 +21,17 @@ export const addItem = (item: CartItem): CartAction => ({
   payload: item,
 });
 
-export const removeItem = (id: string): CartAction => ({
+export const removeItem = (id: number): CartAction => ({
   type: REMOVE_ITEM,
   payload: { id },
 });
 
-export const incrementItem = (id: string): CartAction => ({
+export const incrementItem = (id: number): CartAction => ({
   type: INCREMENT,
   payload: { id },
 });
 
-export const decrementItem = (id: string): CartAction => ({
+export const decrementItem = (id: number): CartAction => ({
   type: DECREMENT,
   payload: { id },
 });

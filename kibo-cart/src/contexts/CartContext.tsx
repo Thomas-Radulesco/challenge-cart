@@ -16,9 +16,9 @@ import type { CartItem } from '../types/cart';
 
 interface CartContextValue extends CartState {
   add: (item: CartItem) => void;
-  remove: (id: string) => void;
-  increment: (id: string) => void;
-  decrement: (id: string) => void;
+  remove: (id: number) => void;
+  increment: (id: number) => void;
+  decrement: (id: number) => void;
   clear: () => void;
   cartCount: number;
 }
@@ -37,9 +37,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   // Store API //
   const add = (item: CartItem) => dispatch(addItem(item));
-  const remove = (id: string) => dispatch(removeItem(id));
-  const increment = (id: string) => dispatch(incrementItem(id));
-  const decrement = (id: string) => dispatch(decrementItem(id));
+  const remove = (id: number) => dispatch(removeItem(id));
+  const increment = (id: number) => dispatch(incrementItem(id));
+  const decrement = (id: number) => dispatch(decrementItem(id));
   const clear = () => dispatch(clearCart());
 
   // Persist cart

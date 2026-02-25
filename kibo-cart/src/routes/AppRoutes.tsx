@@ -7,6 +7,8 @@ import DashboardPage from '../pages/DashboardPage';
 import ProtectedRoute from './ProtectedRoute';
 import { BottomNav } from '../components/navbar/BottomNav';
 import { PageContainer } from '../components/layout/Layout.styles';
+import { ProductPage } from '../pages/ProductPage';
+
 
 function Layout() {
   return (
@@ -42,6 +44,10 @@ const router = createBrowserRouter([
       {
         path: '/search',
         element: <HomePage />,
+      },
+      {
+        path: '/product/:id',
+        element: <ProductPage />,
       }
     ],
   },

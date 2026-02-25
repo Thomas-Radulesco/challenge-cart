@@ -1,6 +1,16 @@
 
 import { useUser } from '../contexts/UserContext';
 import { useNavigate } from 'react-router-dom';
+import { SecondaryButton } from '../components/common/Buttons';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+
+const StyledSecondaryButton = styled(SecondaryButton)`
+    && {
+        margin: 2em;
+    }
+`;
+
 
 export default function DashboardPage() {
     const { user, logout } = useUser();
@@ -15,7 +25,12 @@ export default function DashboardPage() {
         <div>
             <h1>Dashboard</h1>
             <p>Hello, {user?.name}</p>
-            <button onClick={handleLogout}>Logout</button>
+            <StyledSecondaryButton onClick={logout}>
+                Logout
+            </StyledSecondaryButton>
+            <StyledSecondaryButton component={Link} to="/">
+                Back to Shop
+            </StyledSecondaryButton>
         </div>
     );
 }

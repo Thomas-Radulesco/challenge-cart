@@ -25,9 +25,6 @@ export const StyledToolbar = styled(Toolbar)`
     align-items: center;
     justify-content: space-between;
     gap: 0.5rem;
-    // position: fixed;
-    // top: 0;
-    // left: 0;
 
     @media (min-width: 600px) {
         height: 56px;
@@ -111,39 +108,60 @@ export const SearchForm = styled.form`
     overflow: hidden;
 `;
 
+// export const CategoryButton = styled(Button)`
+//   && {
+//     border-right: 1px solid #ddd;
+//     color: black;
+//     text-transform: none;
+
+//     width: 100px;
+//     min-width: 100px;
+//     max-width: 100px;
+
+//     height: 40px;
+//     padding-top: 0;
+//     padding-bottom: 0;
+
+//     display: block;
+//     flex-shrink: 0;
+//     flex-grow: 0;
+
+//     white-space: normal;
+//     line-height: 1.1;
+//     text-align: center;
+
+//     font-size: 0.875rem;
+
+//     @media (max-width: 700px) {
+//       width: 74px;
+//       min-width: 74px;
+//       max-width: 74px;
+//       height: 32px;
+//       font-size: 0.7rem;
+//     }
+//   }
+// `;
+
+
 export const CategoryButton = styled(Button)`
   && {
-    border-right: 1px solid #ddd;
-    color: black;
+    background-color: #f7f7f7;
+    color: #111;
     text-transform: none;
+    border-radius: 6px 0 0 6px;
+    border: 1px solid #ddd;
+    border-right: none;
+    padding: 6px 8px;
+    font-size: 0.8rem;
+    // height: 100%;
 
-    width: 100px;
-    min-width: 100px;
-    max-width: 100px;
-
-    height: 40px;
-    padding-top: 0;
-    padding-bottom: 0;
-
-    display: block;
-    flex-shrink: 0;
-    flex-grow: 0;
-
-    white-space: normal;
-    line-height: 1.1;
-    text-align: center;
-
-    font-size: 0.875rem;
-
-    @media (max-width: 700px) {
-      width: 74px;
-      min-width: 74px;
-      max-width: 74px;
-      height: 32px;
-      font-size: 0.7rem;
+    &:hover {
+      background-color: #eee;
     }
   }
 `;
+
+
 
 export const SearchInput = styled(InputBase)`
   && {
@@ -168,12 +186,37 @@ export const Highlight = styled.span`
   font-weight: bold;
   color: #d35400;
 `;
-export const SearchIconWrapper = styled(IconButton)`
-  && {
-    background-color: #f0c14b;
-    border-radius: 0;
+
+// export const SearchIconWrapper = styled(IconButton)`
+//   && {
+//     background-color: #f0c14b;
+//     border-radius: 0;
+//   }
+// `;
+
+export const SearchIconWrapper = styled.button`
+  background-color: #ff9900;
+  border: none;
+  padding: 6px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 6px 6px 0;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #e68a00;
+  }
+
+  &:active {
+    background-color: #cc7a00;
+  }
+
+  svg {
+    color: #111;
   }
 `;
+
 
 export const BottomNavContainer = styled.div`
     position: fixed;

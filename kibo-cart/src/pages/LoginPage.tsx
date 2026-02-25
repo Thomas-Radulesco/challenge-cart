@@ -1,5 +1,13 @@
 import { useUser } from '../contexts/UserContext';
 import { useNavigate } from 'react-router-dom';
+import { SecondaryButton } from '../components/common/Buttons';
+import styled from 'styled-components';
+
+const StyledSecondaryButton = styled(SecondaryButton)`
+  && {
+    margin: 2rem;
+  }
+`;
 
 export default function LoginPage() {
   const { login } = useUser();
@@ -19,7 +27,7 @@ export default function LoginPage() {
   return (
     <div>
       <h1>Login</h1>
-      <button onClick={handleLogin}>Log in</button>
+      <StyledSecondaryButton onClick={handleLogin}>Log in</StyledSecondaryButton>
     </div>
   );
 }
