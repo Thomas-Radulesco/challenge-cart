@@ -4,6 +4,7 @@ export const PageContainer = styled.div`
     padding-top: 70px;
     padding-left: 16px;
     padding-right: 16px;
+    padding-bottom: 100px;
 
     @media (min-width: 600px) {
         padding-top: 80px; /* slightly more on tablet/desktop */
@@ -14,7 +15,6 @@ export const PageContainer = styled.div`
     @media (min-width: 900px) {
         padding-left: 150px;
         padding-right: 150px;
-        padding-bottom: 100px;
     }
     
     @media (min-width: 1200px) {
