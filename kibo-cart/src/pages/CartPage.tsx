@@ -6,6 +6,7 @@ import { SecondaryButton } from '../components/common/Buttons';
 import { Link } from 'react-router-dom';
 import { QuantityControls } from '../components/common/QuantityControls';
 import { secondary } from '../utils/colors';
+import { formatPrice } from "../utils/formatPrice";
 
 const StyledDeleteIcon = styled(DeleteIcon)`
     margin-left: 5px;
@@ -60,7 +61,7 @@ const QuantityControlsWrapper = styled.div`
 `;
 
 export default function CartPage() {
-  const { items, increment, decrement, remove, clear } = useCart();
+  const { items, clear } = useCart();
 
   const total = items.reduce(
     (sum, item) => sum + item.price * item.quantity,
@@ -91,7 +92,7 @@ export default function CartPage() {
                         <ProductDetailsContainer>
                             <ProductDetails style={{ flex: 1 }}>
                                 <h3>{item.title}</h3>
-                                <p>${item.price.toFixed(2)}</p>
+                                <p>${formatPrice(item.price)}</p>
                             </ProductDetails>
                             <QuantityControlsWrapper>
                                 <QuantityControls id={item.id} quantity={item.quantity} />

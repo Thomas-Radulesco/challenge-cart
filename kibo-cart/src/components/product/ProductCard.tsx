@@ -12,6 +12,8 @@ import { useCart } from "../../contexts/CartContext";
 import { QuantityControls } from "../common/QuantityControls";
 import { AddShoppingCart } from "@mui/icons-material";
 import styled from "styled-components";
+import { formatPrice } from "../../utils/formatPrice";
+
 
 const StyledAddIcon = styled(AddShoppingCart)`
     margin-left: 25px;
@@ -39,7 +41,7 @@ export const ProductCard = ({ product }: { product: Product }) => {
             {product.description.slice(0, 60)}…
         </ShortDescription>
 
-        <Price>${product.price}</Price>
+        <Price>${formatPrice(product.price)}</Price>
 
         {quantity === 0 ? (
             <StyledPrimaryButton onClick={(evt) => {

@@ -8,6 +8,14 @@ import { useCart } from '../contexts/CartContext';
 import { SecondaryButton } from '../components/common/Buttons';
 import { Link } from 'react-router-dom';
 import { AddShoppingCart } from "@mui/icons-material";
+import { formatPrice } from "../utils/formatPrice";
+import { QuantityControls } from "../components/common/QuantityControls";
+
+
+
+const StyledQuantityControls = styled(QuantityControls)`
+    margin: 0!important;
+`;
 
 const StyledAddIcon = styled(AddShoppingCart)`
     margin-left: 25px;
@@ -59,8 +67,9 @@ export const ProductPage = () => {
     const { id } = useParams<{ id: string }>();
     const [product, setProduct] = useState<Product | null>(null);
     const [loading, setLoading] = useState(true);
-    const { add } = useCart();
-        
+    const { items, add } = useCart();
+    const quantity = items.find((i) => i.id === product?.id)?.quantity || 0;  
+
     useEffect(() => {
         if (!id) return;
 
@@ -89,7 +98,7 @@ export const ProductPage = () => {
                 />
                 <ProductDataWrapper>
                     <ProductDetails>
-                        <p><strong>Price:</strong> ${product.price}</p>
+                        <p><strong>Price:</strong> ${formatPrice(product.price)}</p>
                         <p><strong>Category:</strong> {product.category}</p>
                         {product.rating && (
                             <p>
@@ -102,9 +111,24 @@ export const ProductPage = () => {
                         <SecondaryButton component={Link} to="/">
                             Back to Shop
                         </SecondaryButton>
-                        <PrimaryButton onClick={() => add({...product, quantity: 1})}>
+                        {/* <PrimaryButton onClick={() => add({...product, quantity: 1})}>
                             Add to Cart  <StyledAddIcon />
-                        </PrimaryButton>
+                        </PrimaryButton> */}
+
+                        {quantity === 0 ? (
+                            <PrimaryButton
+                                onClick={() => add({...product, quantity: 1})}
+                            >
+                                Add to Cart <StyledAddIcon />
+                            </PrimaryButton>
+                            ) : (
+                                <div style={{marginTop: "-26px",}}>
+                                    <QuantityControls id={product.id} quantity={quantity} />
+                                </div>
+                        )}
+
+
+
                     </ProductInteraction>
                 </ProductDataWrapper>
             </ProductCard>

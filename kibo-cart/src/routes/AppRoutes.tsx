@@ -8,7 +8,7 @@ import ProtectedRoute from './ProtectedRoute';
 import { BottomNav } from '../components/navbar/BottomNav';
 import { PageContainer } from '../components/layout/Layout.styles';
 import { ProductPage } from '../pages/ProductPage';
-
+import { NotFoundPage } from '../pages/NotFoundPage';
 
 function Layout() {
   return (
@@ -48,6 +48,10 @@ const router = createBrowserRouter([
       {
         path: '/product/:id',
         element: <ProductPage />,
+      },
+      {
+        path: '*',
+        element: <NotFoundPage />,
       }
     ],
   },
