@@ -14,12 +14,6 @@ const Wrapper = styled.div`
   text-align: center;
 `;
 
-const Code = styled.h1`
-  font-size: 5rem;
-  margin: 0;
-  color: #ff9900;
-`;
-
 const Message = styled.p`
   font-size: 1.25rem;
   margin: 1rem 0 2rem;
@@ -36,7 +30,7 @@ export const NotFoundPage = () => {
         />
       <Message>Oops… This page doesn’t exist.</Message>
 
-      <SecondaryButton component={Link} to="/">
+      <SecondaryButton as={Link} to="/">
         Back to Shop
       </SecondaryButton>
     </Wrapper>

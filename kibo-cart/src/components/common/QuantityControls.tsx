@@ -59,23 +59,29 @@ export const QuantityControls = ({ id, quantity }: { id: number; quantity: numbe
   return (
     <Wrapper>
         <ControlsWrapper>
-            <ControlButton onClick={(evt) => {
-                evt.preventDefault();
-                evt.stopPropagation();
-                decrement(id);
-            }}><Remove /></ControlButton>
+            <ControlButton
+                aria-label="decrement"
+                onClick={(evt) => {
+                    evt.preventDefault();
+                    evt.stopPropagation();
+                    decrement(id);
+                }}><Remove /></ControlButton>
             <span>{quantity}</span>
-            <ControlButton onClick={(evt) => {
+            <ControlButton
+                aria-label="increment"
+                onClick={(evt) => {
+                    evt.preventDefault();
+                    evt.stopPropagation();
+                    increment(id);
+                }}><Add /></ControlButton>
+        </ControlsWrapper>
+        <DeleteButton
+            aria-label="remove"
+            onClick={(evt) => {
                 evt.preventDefault();
                 evt.stopPropagation();
-                increment(id);
-            }}><Add /></ControlButton>
-        </ControlsWrapper>
-        <DeleteButton onClick={(evt) => {
-            evt.preventDefault();
-            evt.stopPropagation();
-            remove(id);
-        }}><DeleteIcon /></DeleteButton>
+                remove(id);
+            }}><DeleteIcon /></DeleteButton>
     </Wrapper>
   );
 };

@@ -23,7 +23,8 @@ export function useCategories() {
         fetchCategories()
             .then((data) => {
                 cachedCategories = data;
-                setCategories(data);
+                const normalized = data.map( (c) => c.charAt(0).toUpperCase() + c.slice(1) );
+                setCategories([AllProductsCategory, ...normalized]);
             })
             .catch((err) => {
                 setError(err instanceof Error ? err.message : "API error");

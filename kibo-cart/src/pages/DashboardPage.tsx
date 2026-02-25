@@ -1,6 +1,5 @@
 
 import { useUser } from '../contexts/UserContext';
-import { useNavigate } from 'react-router-dom';
 import { SecondaryButton } from '../components/common/Buttons';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -14,12 +13,6 @@ const StyledSecondaryButton = styled(SecondaryButton)`
 
 export default function DashboardPage() {
     const { user, logout } = useUser();
-    const navigate = useNavigate();
-    
-    function handleLogout() {
-        logout();
-        navigate('/', { replace: true });
-    }
     
     return (
         <div>
@@ -28,7 +21,7 @@ export default function DashboardPage() {
             <StyledSecondaryButton onClick={logout}>
                 Logout
             </StyledSecondaryButton>
-            <StyledSecondaryButton component={Link} to="/">
+            <StyledSecondaryButton as={Link} to="/">
                 Back to Shop
             </StyledSecondaryButton>
         </div>

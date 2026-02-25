@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import type { Product } from '../types/product';
-import { fetchProductById } from '../api/products';
+import { fetchProductById } from "@/api/products";
 import { PrimaryButton } from '../components/common/Buttons';
 import styled from 'styled-components';
 import { useCart } from '../contexts/CartContext';
@@ -11,11 +11,6 @@ import { AddShoppingCart } from "@mui/icons-material";
 import { formatPrice } from "../utils/formatPrice";
 import { QuantityControls } from "../components/common/QuantityControls";
 
-
-
-const StyledQuantityControls = styled(QuantityControls)`
-    margin: 0!important;
-`;
 
 const StyledAddIcon = styled(AddShoppingCart)`
     margin-left: 25px;
@@ -75,7 +70,7 @@ export const ProductPage = () => {
 
         setLoading(true);
         fetchProductById(Number(id))
-        .then((data) => setProduct(data))
+        .then((data: Product | null) => setProduct(data))
         .finally(() => setLoading(false));
     }, [id]);
 
@@ -108,7 +103,7 @@ export const ProductPage = () => {
                         <p style={{ marginTop: '1rem' }}>{product.description}</p>
                     </ProductDetails>
                     <ProductInteraction>
-                        <SecondaryButton component={Link} to="/">
+                        <SecondaryButton as={Link} to="/">
                             Back to Shop
                         </SecondaryButton>
                         {/* <PrimaryButton onClick={() => add({...product, quantity: 1})}>

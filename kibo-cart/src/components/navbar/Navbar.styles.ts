@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import InputBase from '@mui/material/InputBase';
 import Paper from '@mui/material/Paper';
-import IconButton from '@mui/material/IconButton';
 
 export const StyledAppBar = styled(AppBar)`
   && {

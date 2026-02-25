@@ -1,7 +1,7 @@
 import { Navigate } from 'react-router-dom';
 import { useUser } from '../contexts/UserContext';
 
-export default function ProtectedRoute({ children }: { children: JSX.Element }) {
+export default function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { user } = useUser();
 
   if (!user) {

@@ -1,73 +1,80 @@
-import { describe, it, expect } from "vitest";
-import type { CartItem, CartState } from "../types/cart";
-import { cartReducer } from "../contexts/CartContext";
+import { cartReducer, initialCartState } from "../contexts/cart/cartReducer";
+import {
+  ADD_ITEM,
+  REMOVE_ITEM,
+  INCREMENT,
+  DECREMENT,
+  CLEAR_CART,
+} from "../contexts/cart/cartActions";
 
+const mockItem = {
+  id: 1,
+  title: "Test Product",
+  price: 10,
+  quantity: 1,
+  image: "",
+};
 
 describe("cartReducer", () => {
-  const initialState: CartState = { items: [] };
+  it("adds a new item to the cart", () => {
+    const action = { type: ADD_ITEM, payload: mockItem };
+    const result = cartReducer(initialCartState, action);
 
-  const sampleItem: CartItem = {
-    id: "1",
-    title: "Test Product",
-    price: 10,
-    quantity: 1,
-  };
-
-  it("adds a new item", () => {
-    const state = cartReducer(initialState, {
-      type: "ADD_ITEM",
-      payload: sampleItem,
-    });
-
-    expect(state.items.length).toBe(1);
-    expect(state.items[0]).toEqual(sampleItem);
+    expect(result.items).toHaveLength(1);
+    expect(result.items[0].quantity).toBe(1);
   });
 
-  it("increments quantity when adding an existing item", () => {
-    const state = cartReducer(
-      { items: [sampleItem] },
-      {
-        type: "ADD_ITEM",
-        payload: { ...sampleItem, quantity: 2 },
-      }
-    );
+  it("increments quantity if item already exists", () => {
+    const state = { items: [{ ...mockItem, quantity: 1 }] };
+    const action = { type: ADD_ITEM, payload: { ...mockItem, quantity: 1 } };
 
-    expect(state.items[0].quantity).toBe(3);
+    const result = cartReducer(state, action);
+
+    expect(result.items[0].quantity).toBe(2);
   });
 
-  it("removes an item", () => {
-    const state = cartReducer(
-      { items: [sampleItem] },
-      { type: "REMOVE_ITEM", payload: { id: "1" } }
-    );
+  it("increments quantity using INCREMENT", () => {
+    const state = { items: [{ ...mockItem, quantity: 1 }] };
+    const action = { type: INCREMENT, payload: { id: 1 } };
 
-    expect(state.items.length).toBe(0);
+    const result = cartReducer(state, action);
+
+    expect(result.items[0].quantity).toBe(2);
   });
 
-  it("increments quantity", () => {
-    const state = cartReducer(
-      { items: [sampleItem] },
-      { type: "INCREMENT", payload: { id: "1" } }
-    );
+  it("decrements quantity using DECREMENT", () => {
+    const state = { items: [{ ...mockItem, quantity: 2 }] };
+    const action = { type: DECREMENT, payload: { id: 1 } };
 
-    expect(state.items[0].quantity).toBe(2);
+    const result = cartReducer(state, action);
+
+    expect(result.items[0].quantity).toBe(1);
   });
 
-  it("decrements quantity and removes item at zero", () => {
-    const state = cartReducer(
-      { items: [sampleItem] },
-      { type: "DECREMENT", payload: { id: "1" } }
-    );
+  it("removes item when quantity reaches 0", () => {
+    const state = { items: [{ ...mockItem, quantity: 1 }] };
+    const action = { type: DECREMENT, payload: { id: 1 } };
 
-    expect(state.items.length).toBe(0);
+    const result = cartReducer(state, action);
+
+    expect(result.items).toHaveLength(0);
+  });
+
+  it("removes item explicitly", () => {
+    const state = { items: [{ ...mockItem, quantity: 3 }] };
+    const action = { type: REMOVE_ITEM, payload: { id: 1 } };
+
+    const result = cartReducer(state, action);
+
+    expect(result.items).toHaveLength(0);
   });
 
   it("clears the cart", () => {
-    const state = cartReducer(
-      { items: [sampleItem] },
-      { type: "CLEAR_CART" }
-    );
+    const state = { items: [{ ...mockItem, quantity: 3 }] };
+    const action = { type: CLEAR_CART };
 
-    expect(state.items.length).toBe(0);
+    const result = cartReducer(state, action);
+
+    expect(result.items).toHaveLength(0);
   });
 });

@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useMediaQuery, useTheme } from '@mui/material';
+import { useMediaQuery } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
 import Button from '@mui/material/Button';
@@ -29,7 +29,6 @@ import {
     Highlight,
     SearchIconWrapper
 } from './Navbar.styles';
-import { SecondaryButton } from '../common/Buttons';
 
 export default function Navbar() {
     const navigate = useNavigate();

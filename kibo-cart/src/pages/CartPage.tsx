@@ -77,7 +77,7 @@ export default function CartPage() {
         {(items.length === 0) && 
             <p>Your cart is empty.</p>
         }
-        <StyledSecondaryButton component={Link} to="/">
+        <StyledSecondaryButton as={Link} to="/">
             Back to Shop
         </StyledSecondaryButton>
 
