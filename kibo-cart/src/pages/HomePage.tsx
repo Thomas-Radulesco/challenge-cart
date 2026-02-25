@@ -1,5 +1,4 @@
 import { useLocation } from 'react-router-dom';
-import { useUser } from '../contexts/UserContext';
 import { useProducts } from '../hooks/useProducts';
 import { useParams } from 'react-router-dom';
 import { AllProductsCategory, capitalizeCategory } from '../hooks/useCategories';
