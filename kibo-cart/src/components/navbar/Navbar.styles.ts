@@ -1,0 +1,199 @@
+import styled from 'styled-components';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import { Link } from 'react-router-dom';
+import Button from '@mui/material/Button';
+import InputBase from '@mui/material/InputBase';
+import Paper from '@mui/material/Paper';
+import IconButton from '@mui/material/IconButton';
+
+export const StyledAppBar = styled(AppBar)`
+  && {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #E4E5E6;
+    color: #000;
+  }
+`;
+
+export const StyledToolbar = styled(Toolbar)`
+  && {
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 46px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    // position: fixed;
+    // top: 0;
+    // left: 0;
+
+    @media (min-width: 600px) {
+        height: 56px;
+        padding: 0 12px;
+    }
+    @media (min-width: 700px) {
+        gap: 1rem;
+    } 
+  }
+`;
+
+export const LogoImg = styled.img`
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    display: block;
+`;
+
+export const Brand = styled(Link)`
+    display: block;
+    text-align: left;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: .75rem;
+    font-weight: bold;
+    color: inherit;
+    margin-left: .2rem;
+    
+    @media (min-width: 520px) {
+        font-size: .875rem;
+    }
+    
+    @media (min-width: 700px) {
+        width: 120px !important;
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+`;
+
+export const SearchContainer = styled.div`
+    position: relative;
+    width: 100%;
+    width: calc(100% - 30px - 1rem);
+    margin: 0 auto;
+    flex-shrink: 0;
+
+    @media (min-width: 400px) {
+        width: calc(100% - 30px - 1rem);
+        font-size: 1.2rem;
+    }
+
+    @media (min-width: 520px) {
+        width: calc(100% - 165px - 1rem);
+        font-size: 1.2rem;
+        margin: 0;
+    }
+
+    @media (min-width: 700px) {
+        width: calc(100% - 225px - 1rem);
+    }
+    
+    @media (min-width: 900px) {
+        width: calc(100% - 405px - 1rem);
+    }
+`;
+
+export const SearchWrapper = styled.div`
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+`;
+
+export const SearchForm = styled.form`
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
+    background: white;
+    border-radius: 6px;
+    overflow: hidden;
+`;
+
+export const CategoryButton = styled(Button)`
+  && {
+    border-right: 1px solid #ddd;
+    color: black;
+    text-transform: none;
+
+    width: 100px;
+    min-width: 100px;
+    max-width: 100px;
+
+    height: 40px;
+    padding-top: 0;
+    padding-bottom: 0;
+
+    display: block;
+    flex-shrink: 0;
+    flex-grow: 0;
+
+    white-space: normal;
+    line-height: 1.1;
+    text-align: center;
+
+    font-size: 0.875rem;
+
+    @media (max-width: 700px) {
+      width: 74px;
+      min-width: 74px;
+      max-width: 74px;
+      height: 32px;
+      font-size: 0.7rem;
+    }
+  }
+`;
+
+export const SearchInput = styled(InputBase)`
+  && {
+    padding-left: 12px;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+`;
+
+export const SuggestionsWrapper = styled(Paper)`
+    && {
+        position: absolute;
+        top: 110%;
+        width: 100%;
+        max-width: 800px;
+        z-index: 10;
+        max-height: 300px;
+        overflow-y: auto;
+    }
+`;
+export const Highlight = styled.span`
+  font-weight: bold;
+  color: #d35400;
+`;
+export const SearchIconWrapper = styled(IconButton)`
+  && {
+    background-color: #f0c14b;
+    border-radius: 0;
+  }
+`;
+
+export const BottomNavContainer = styled.div`
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 56px;
+
+    background-color: #1b1b1b;
+    color: #E4E5E6;
+    border-top: 1px solid #E4E5E6;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+
+    z-index: 2000;
+
+    @media (min-width: 520px) {
+        display: none;
+    }
+`;
