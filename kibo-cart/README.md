@@ -1,30 +1,95 @@
-## Product Categories
+# 🛒 Kibo Cart — React + TypeScript E‑Commerce Demo
 
-The application fetches product categories from the FakeStoreAPI:
+A modern, responsive e‑commerce cart application built with **React**, **TypeScript**, **Vite**, and **Styled‑Components**, featuring real API integration, category filtering, product pages, cart management, and a clean UI.
 
-- electronics
-- jewelery
-- men's clothing
-- women's clothing
+This project was completed as part of the **Kibo Engineering Challenge**.
 
-To provide a complete browsing experience, the app also includes a custom
-“All products” category that displays the full product list.
+---
 
-This category is not part of the API and is manually injected by the
-`useCategories` hook:
+## 🚀 Live Deployment
 
-```ts
-export const AllProductsCategory = "All products";
+**URL:** https://kibo-shop.surge.sh
 
-setCategories([AllProductsCategory, ...normalizedApiCategories]);
-```
+Deployed using Surge (static hosting).
 
-This ensures consistent behavior across:
+---
 
-the Navbar category dropdown
+## 📦 Framework & Library Versions
 
-the HomePage category filter
+| Library / Tool | Version |
+|----------------|---------|
+| React | 18.x |
+| TypeScript | 5.x |
+| Vite | 5.x |
+| React Router | 6.22.x |
+| Styled‑Components | 6.x |
+| Material UI Icons | 5.x |
+| Vitest | 1.x |
+| React Testing Library | 14.x |
 
-the search bar category selector
+---
 
-the /category/:name route
+## 🧰 Features
+
+- Product listing with category filtering  
+- “All products” category  
+- Product detail page  
+- Cart with add/remove/increment/decrement  
+- Responsive layout  
+- Styled‑components theming  
+- React Router navigation  
+- FakeStoreAPI integration  
+- Clean, modern UI  
+
+---
+
+## 🛠 Setup & Run Instructions
+
+### 1. Install dependencies
+npm install
+### 2. Start development server
+npm run dev
+
+
+### 3. Build for production
+npm run build
+
+### 4. Preview production build
+npm run preview
+
+## 🧪 Testing Instructions
+### Run all tests:
+npm run test
+
+### Run tests in watch mode:
+npm run test:watch
+
+### Coverage:
+npm run coverage
+
+## 🧠 AI‑Augmentation Log
+See developer-log.md for:
+
+- AI strategy
+
+- Human audit moments
+
+- Verification and test generation
+
+
+## 📁 Project Structure
+src/
+  api/
+  components/
+  contexts/
+  hooks/
+  pages/
+  routes/
+  styles/
+  tests/
+
+
+## 📜 License
+MIT
+
+---
