@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react';
-import type { ReactNode } from "react";
+import type { ReactNode } from 'react';
 import type { User } from '../types/user';
 
 interface UserContextValue {
@@ -15,7 +15,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
 
   // Load user from localStorage on mount
   useEffect(() => {
-    const stored = localStorage.getItem('user'); 
+    const stored = localStorage.getItem('user');
     if (stored) {
       try {
         setUser(JSON.parse(stored));

@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled, { keyframes } from 'styled-components';
 
 const pulse = keyframes`
   0% { opacity: 0.6; }
@@ -31,15 +31,15 @@ const ImagePlaceholder = styled(SkeletonBlock)`
 export const SkeletonCard = () => {
   return (
     <div data-testid="skeleton-card">
-        <Card>
-            <ImagePlaceholder height="180px" />
+      <Card>
+        <ImagePlaceholder height="180px" />
 
-            <SkeletonBlock height="20px" style={{ marginBottom: "8px" }} />
-            <SkeletonBlock height="16px" style={{ marginBottom: "8px" }} />
-            <SkeletonBlock height="16px" style={{ marginBottom: "12px" }} />
+        <SkeletonBlock height="20px" style={{ marginBottom: '8px' }} />
+        <SkeletonBlock height="16px" style={{ marginBottom: '8px' }} />
+        <SkeletonBlock height="16px" style={{ marginBottom: '12px' }} />
 
-            <SkeletonBlock height="28px" />
-        </Card>
+        <SkeletonBlock height="28px" />
+      </Card>
     </div>
   );
 };

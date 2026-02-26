@@ -1,7 +1,7 @@
-import styled from "styled-components";
-import { SecondaryButton } from "../components/common/Buttons";
-import { Link } from "react-router-dom";
-import NotFoundImage from "../assets/404.webp";
+import styled from 'styled-components';
+import { SecondaryButton } from '../components/common/Buttons';
+import { Link } from 'react-router-dom';
+import NotFoundImage from '../assets/404.webp';
 
 const Wrapper = styled.div`
   display: flex;
@@ -23,12 +23,12 @@ const Message = styled.p`
 export const NotFoundPage = () => {
   return (
     <Wrapper>
-        <img
-            src={NotFoundImage}
-            alt="Page not found"
-            style={{ maxWidth: "300px", marginBottom: "1.5rem" }}
-        />
-      <Message>Oops… This page doesn’t exist.</Message>
+      <img
+        src={NotFoundImage}
+        alt="Page not found"
+        style={{ maxWidth: '300px', marginBottom: '1.5rem' }}
+      />
+      <Message>Oops… This page doesn't exist.</Message>
 
       <SecondaryButton as={Link} to="/">
         Back to Shop

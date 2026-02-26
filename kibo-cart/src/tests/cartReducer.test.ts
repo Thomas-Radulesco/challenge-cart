@@ -1,22 +1,22 @@
-import { cartReducer, initialCartState } from "../contexts/cart/cartReducer";
+import { cartReducer, initialCartState } from '../contexts/cart/cartReducer';
 import {
   ADD_ITEM,
   REMOVE_ITEM,
   INCREMENT,
   DECREMENT,
   CLEAR_CART,
-} from "../contexts/cart/cartActions";
+} from '../contexts/cart/cartActions';
 
 const mockItem = {
   id: 1,
-  title: "Test Product",
+  title: 'Test Product',
   price: 10,
   quantity: 1,
-  image: "",
+  image: '',
 };
 
-describe("cartReducer", () => {
-  it("adds a new item to the cart", () => {
+describe('cartReducer', () => {
+  it('adds a new item to the cart', () => {
     const action = { type: ADD_ITEM, payload: mockItem };
     const result = cartReducer(initialCartState, action);
 
@@ -24,7 +24,7 @@ describe("cartReducer", () => {
     expect(result.items[0].quantity).toBe(1);
   });
 
-  it("increments quantity if item already exists", () => {
+  it('increments quantity if item already exists', () => {
     const state = { items: [{ ...mockItem, quantity: 1 }] };
     const action = { type: ADD_ITEM, payload: { ...mockItem, quantity: 1 } };
 
@@ -33,7 +33,7 @@ describe("cartReducer", () => {
     expect(result.items[0].quantity).toBe(2);
   });
 
-  it("increments quantity using INCREMENT", () => {
+  it('increments quantity using INCREMENT', () => {
     const state = { items: [{ ...mockItem, quantity: 1 }] };
     const action = { type: INCREMENT, payload: { id: 1 } };
 
@@ -42,7 +42,7 @@ describe("cartReducer", () => {
     expect(result.items[0].quantity).toBe(2);
   });
 
-  it("decrements quantity using DECREMENT", () => {
+  it('decrements quantity using DECREMENT', () => {
     const state = { items: [{ ...mockItem, quantity: 2 }] };
     const action = { type: DECREMENT, payload: { id: 1 } };
 
@@ -51,7 +51,7 @@ describe("cartReducer", () => {
     expect(result.items[0].quantity).toBe(1);
   });
 
-  it("removes item when quantity reaches 0", () => {
+  it('removes item when quantity reaches 0', () => {
     const state = { items: [{ ...mockItem, quantity: 1 }] };
     const action = { type: DECREMENT, payload: { id: 1 } };
 
@@ -60,7 +60,7 @@ describe("cartReducer", () => {
     expect(result.items).toHaveLength(0);
   });
 
-  it("removes item explicitly", () => {
+  it('removes item explicitly', () => {
     const state = { items: [{ ...mockItem, quantity: 3 }] };
     const action = { type: REMOVE_ITEM, payload: { id: 1 } };
 
@@ -69,7 +69,7 @@ describe("cartReducer", () => {
     expect(result.items).toHaveLength(0);
   });
 
-  it("clears the cart", () => {
+  it('clears the cart', () => {
     const state = { items: [{ ...mockItem, quantity: 3 }] };
     const action = { type: CLEAR_CART };
 

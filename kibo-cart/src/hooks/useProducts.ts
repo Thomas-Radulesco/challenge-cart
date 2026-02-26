@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import type { Product } from '../types/product';
-import { fetchAllProducts } from "../api/products";
+import { fetchAllProducts } from '../api/products';
 
 let cachedProducts: Product[] | null = null;
 
@@ -19,7 +19,7 @@ export function useProducts() {
         setProducts(data);
       })
       .catch((err) => {
-        setError(err instanceof Error ? err.message : "API error");
+        setError(err instanceof Error ? err.message : 'API error');
       })
       .finally(() => {
         setLoading(false);

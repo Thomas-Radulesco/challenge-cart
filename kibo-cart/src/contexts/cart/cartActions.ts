@@ -13,8 +13,7 @@ export type CartAction =
   | { type: typeof DECREMENT; payload: { id: number } }
   | { type: typeof CLEAR_CART };
 
-
-  // Action creators — clean, readable, reusable
+// Action creators — clean, readable, reusable
 
 export const addItem = (item: CartItem): CartAction => ({
   type: ADD_ITEM,

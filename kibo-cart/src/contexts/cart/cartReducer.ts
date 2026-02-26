@@ -19,14 +19,14 @@ export const initialCartState: CartState = {
 export function cartReducer(state: CartState, action: CartAction): CartState {
   switch (action.type) {
     case ADD_ITEM: {
-      const existing = state.items.find(i => i.id === action.payload.id);
+      const existing = state.items.find((i) => i.id === action.payload.id);
       if (existing) {
         return {
           ...state,
-          items: state.items.map(i =>
+          items: state.items.map((i) =>
             i.id === action.payload.id
               ? { ...i, quantity: i.quantity + action.payload.quantity }
-              : i
+              : i,
           ),
         };
       }
@@ -39,16 +39,14 @@ export function cartReducer(state: CartState, action: CartAction): CartState {
     case REMOVE_ITEM:
       return {
         ...state,
-        items: state.items.filter(i => i.id !== action.payload.id),
+        items: state.items.filter((i) => i.id !== action.payload.id),
       };
 
     case INCREMENT:
       return {
         ...state,
-        items: state.items.map(i =>
-          i.id === action.payload.id
-            ? { ...i, quantity: i.quantity + 1 }
-            : i
+        items: state.items.map((i) =>
+          i.id === action.payload.id ? { ...i, quantity: i.quantity + 1 } : i,
         ),
       };
 
@@ -56,12 +54,10 @@ export function cartReducer(state: CartState, action: CartAction): CartState {
       return {
         ...state,
         items: state.items
-          .map(i =>
-            i.id === action.payload.id
-              ? { ...i, quantity: i.quantity - 1 }
-              : i
+          .map((i) =>
+            i.id === action.payload.id ? { ...i, quantity: i.quantity - 1 } : i,
           )
-          .filter(i => i.quantity > 0),
+          .filter((i) => i.quantity > 0),
       };
 
     case CLEAR_CART:

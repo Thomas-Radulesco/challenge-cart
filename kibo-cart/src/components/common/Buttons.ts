@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import Button, { type ButtonProps } from "@mui/material/Button";
-import { primary, secondary, danger } from "../../utils/colors";
+import styled from 'styled-components';
+import Button, { type ButtonProps } from '@mui/material/Button';
+import { primary, secondary, danger } from '../../utils/colors';
 
 export const PrimaryButton = styled(Button)<ButtonProps>`
   && {
@@ -20,7 +20,6 @@ export const PrimaryButton = styled(Button)<ButtonProps>`
     }
   }
 `;
-
 
 export const SecondaryButton = styled(Button)<ButtonProps>`
   && {

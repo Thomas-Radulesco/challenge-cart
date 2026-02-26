@@ -23,7 +23,9 @@ interface CartContextValue extends CartState {
   cartCount: number;
 }
 
-export const CartContext = createContext<CartContextValue | undefined>(undefined);
+export const CartContext = createContext<CartContextValue | undefined>(
+  undefined,
+);
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(cartReducer, initialCartState, () => {
@@ -45,7 +47,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
   }, [state]);
 
   return (
-    <CartContext.Provider value={{ ...state, add, remove, increment, decrement, clear, cartCount }}>
+    <CartContext.Provider
+      value={{ ...state, add, remove, increment, decrement, clear, cartCount }}
+    >
       {children}
     </CartContext.Provider>
   );

@@ -1,22 +1,22 @@
-import { renderHook, act } from "@testing-library/react";
-import { CartProvider, useCart } from "../contexts/CartContext";
+import { renderHook, act } from '@testing-library/react';
+import { CartProvider, useCart } from '../contexts/CartContext';
 
 // Mock localStorage to avoid writing to real storage during tests
 beforeEach(() => {
-  vi.spyOn(Storage.prototype, "setItem").mockImplementation(() => {});
-  vi.spyOn(Storage.prototype, "getItem").mockImplementation(() => null);
+  vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => {});
+  vi.spyOn(Storage.prototype, 'getItem').mockImplementation(() => null);
 });
 
 const mockItem = {
   id: 1,
-  title: "Test Product",
+  title: 'Test Product',
   price: 10,
   quantity: 1,
-  image: "",
+  image: '',
 };
 
-describe("CartContext", () => {
-  it("adds an item", () => {
+describe('CartContext', () => {
+  it('adds an item', () => {
     const { result } = renderHook(() => useCart(), {
       wrapper: CartProvider,
     });
@@ -30,7 +30,7 @@ describe("CartContext", () => {
     expect(result.current.cartCount).toBe(1);
   });
 
-  it("increments quantity", () => {
+  it('increments quantity', () => {
     const { result } = renderHook(() => useCart(), {
       wrapper: CartProvider,
     });
@@ -44,7 +44,7 @@ describe("CartContext", () => {
     expect(result.current.cartCount).toBe(2);
   });
 
-  it("decrements quantity and removes item at zero", () => {
+  it('decrements quantity and removes item at zero', () => {
     const { result } = renderHook(() => useCart(), {
       wrapper: CartProvider,
     });
@@ -58,7 +58,7 @@ describe("CartContext", () => {
     expect(result.current.cartCount).toBe(0);
   });
 
-  it("clears the cart", () => {
+  it('clears the cart', () => {
     const { result } = renderHook(() => useCart(), {
       wrapper: CartProvider,
     });

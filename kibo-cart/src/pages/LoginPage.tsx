@@ -19,7 +19,7 @@ export default function LoginPage() {
       id: '1',
       name: 'Thomas',
       email: 'thomas@example.com',
-      postalCode: '75000'
+      postalCode: '75000',
     });
 
     navigate('/dashboard');
@@ -28,8 +28,12 @@ export default function LoginPage() {
   return (
     <div>
       <h1>Login</h1>
-      <StyledSecondaryButton onClick={handleLogin}>Log in</StyledSecondaryButton>
-      <StyledSecondaryButton as={Link} to="/">Back to Shop</StyledSecondaryButton>
+      <StyledSecondaryButton onClick={handleLogin}>
+        Log in
+      </StyledSecondaryButton>
+      <StyledSecondaryButton as={Link} to="/">
+        Back to Shop
+      </StyledSecondaryButton>
     </div>
   );
 }
