@@ -108,7 +108,7 @@ const EmptyCartInformation = styled.div`
     margin-top: 5rem;
 `;
 
-const CartWrapper = styled.div<{centered: boolean}>`
+const CartWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -154,7 +154,7 @@ export default function CartPage() {
 
   return (
     <div>
-    <CartWrapper centered={(items.length === 0) && true}>
+    <CartWrapper>
         {(items.length > 0) && (
             <CartHeader>
                 <h1>Your Cart</h1>

@@ -30,14 +30,16 @@ const ImagePlaceholder = styled(SkeletonBlock)`
 
 export const SkeletonCard = () => {
   return (
-    <Card>
-      <ImagePlaceholder height="180px" />
+    <div data-testid="skeleton-card">
+        <Card>
+            <ImagePlaceholder height="180px" />
 
-      <SkeletonBlock height="20px" style={{ marginBottom: "8px" }} />
-      <SkeletonBlock height="16px" style={{ marginBottom: "8px" }} />
-      <SkeletonBlock height="16px" style={{ marginBottom: "12px" }} />
+            <SkeletonBlock height="20px" style={{ marginBottom: "8px" }} />
+            <SkeletonBlock height="16px" style={{ marginBottom: "8px" }} />
+            <SkeletonBlock height="16px" style={{ marginBottom: "12px" }} />
 
-      <SkeletonBlock height="28px" />
-    </Card>
+            <SkeletonBlock height="28px" />
+        </Card>
+    </div>
   );
 };

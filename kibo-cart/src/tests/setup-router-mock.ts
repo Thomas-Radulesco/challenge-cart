@@ -11,6 +11,9 @@ vi.mock("react-router-dom", async (importOriginal) => {
         ...opts,
       });
     },
+
+    // useParams: vi.fn(() => ({ id: "1" })),  
+    // useLocation: vi.fn(() => ({ search: "" })),
   };
 });
 

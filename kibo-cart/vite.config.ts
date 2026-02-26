@@ -23,13 +23,14 @@ export default defineConfig({
   ],
   server: {
     port: 5173,
-    strictPort: true, // fail if 5173 is in use instead of picking another port
+    strictPort: true,
   },
   test: {
     reporters: ["verbose"],
     globals: true,
     environment: "jsdom",
-    setupFiles: ["./src/tests/setup.ts", "./src/tests/setup-router-mock.ts"],
+    // setupFiles: ["./src/tests/setup.ts", "./src/tests/setup-router-mock.ts"],
+    setupFiles: ["./src/tests/setup.ts"],
     include: ["src/tests/**/*.{test,spec}.{ts,tsx}"],
     exclude: [...configDefaults.exclude, "dist", "build"],
     coverage: {

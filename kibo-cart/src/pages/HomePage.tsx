@@ -8,6 +8,7 @@ import { SkeletonCard } from '../components/product/SkeletonCard';
 export default function HomePage() {
     const { products, loading, error } = useProducts();
     const { name: category } = useParams();
+
     const normalizedCategory = category?.toLowerCase();
     const location = useLocation();
     const params = new URLSearchParams(location.search);
@@ -31,7 +32,7 @@ export default function HomePage() {
     }
 
     if (error) return <p>Error: {error}</p>;
-    if (!products) return <p>No products found.</p>;
+    if (!products || products.length === 0) return <p>No products found.</p>;
 
     let filtered = products;
 
@@ -46,9 +47,9 @@ export default function HomePage() {
     }
 
     if (q) {
-    filtered = filtered.filter((product) =>
-        product.title.toLowerCase().includes(q.toLowerCase())
-    );
+        filtered = filtered.filter((product) =>
+            product.title.toLowerCase().includes(q.toLowerCase())
+        );    
     }
 
     return (
