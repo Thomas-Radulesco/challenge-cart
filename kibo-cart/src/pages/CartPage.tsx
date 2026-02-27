@@ -1,12 +1,11 @@
 import { useCart } from '../contexts/CartContext';
-import { DangerButton } from '../components/common/Buttons';
+import { DangerButton, LinkButton } from '../components/common/Buttons';
 import styled from 'styled-components';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { SecondaryButton } from '../components/common/Buttons';
-import { Link } from 'react-router-dom';
 import { QuantityControls } from '../components/common/QuantityControls';
-import { secondary } from '../utils/colors';
+import { productTheme, secondary } from '../utils/colors';
 import { formatPrice } from '../utils/formatPrice';
+import { Link } from 'react-router-dom';
 
 const StyledDeleteIcon = styled(DeleteIcon)`
   margin-left: 5px;
@@ -20,18 +19,12 @@ const StyledDangerButton = styled(DangerButton)`
   }
 `;
 
-const StyledSecondaryButton = styled(SecondaryButton)`
-  && {
-    margin-top: 2.5rem; // necessary when empty cart
-  }
-`;
-
 const TotalCart = styled.h2`
   margin-bottom: 2rem;
   margin-top: 2rem;
 `;
 
-const ProductWrapper = styled.div`
+const ProductWrapper = styled(Link)`
   display: flex;
   align-items: flex-start;
   gap: 1rem;
@@ -39,6 +32,21 @@ const ProductWrapper = styled.div`
   padding: 1rem;
   width: 100%;
   flex-wrap: wrap;
+  text-decoration: none;
+  transition: box-shadow 0.2s ease;
+  border: 1px solid ${productTheme.cardBorder};
+  border-radius: 8px;
+
+  &:hover,
+  &:focus,
+  &:visited {
+    text-decoration: none;
+    color: ${secondary.color};
+  }
+
+  &:hover {
+    box-shadow: 0 2px 8px ${productTheme.cardShadow};
+  }
 `;
 
 const ProductDetails = styled.div`
@@ -93,6 +101,7 @@ const EmptyCartInformation = styled.div`
   width: fit-content;
   justify-content: space-between;
   margin-top: 5rem;
+  align-items: center;
 `;
 
 const CartWrapper = styled.div`
@@ -131,6 +140,39 @@ const StyledTitle = styled.h1`
   margin-bottom: 2rem;
 `;
 
+const StyledLinkButton = styled(LinkButton)`
+  && {
+    width: 128px;
+    height: 42px;
+    padding: 8px 16px;
+    line-height: 1.75;
+    margin: 2rem 0;
+  }
+`;
+
+const CartContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 1rem;
+
+  @media (min-width: 600px) {
+    width: 90%;
+  }
+
+  @media (min-width: 900px) {
+    width: 80%;
+  }
+
+  @media (min-width: 1200px) {
+    width: 70%;
+  }
+
+  @media (min-width: 1300px) {
+    width: 60%;
+  }
+`;
+
 export default function CartPage() {
   const { items, clear } = useCart();
 
@@ -155,19 +197,15 @@ export default function CartPage() {
           <EmptyCartInformation>
             <StyledTitle>Your Cart</StyledTitle>
             <p>Your cart is empty.</p>
-            <StyledSecondaryButton as={Link} to="/">
-              Back to Shop
-            </StyledSecondaryButton>
+            <StyledLinkButton to="/">Back to Shop</StyledLinkButton>
           </EmptyCartInformation>
         )}
 
         {items.length > 0 && (
           <>
-            <div
-              style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}
-            >
+            <CartContainer>
               {items.map((item) => (
-                <ProductWrapper key={item.id}>
+                <ProductWrapper key={item.id} to={`/product/${item.id}`}>
                   <img
                     src={item.image}
                     alt={item.title}
@@ -184,11 +222,9 @@ export default function CartPage() {
                   </ProductDetailsContainer>
                 </ProductWrapper>
               ))}
-            </div>
+            </CartContainer>
             <CartFooter>
-              <SecondaryButton as={Link} to="/">
-                Back to Shop
-              </SecondaryButton>
+              <StyledLinkButton to="/">Back to Shop</StyledLinkButton>
               <TotalCart>Total: ${total.toFixed(2)}</TotalCart>
             </CartFooter>
           </>

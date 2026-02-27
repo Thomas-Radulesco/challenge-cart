@@ -5,12 +5,11 @@ import { fetchProductById } from '@/api/products';
 import { PrimaryButton } from '../components/common/Buttons';
 import styled from 'styled-components';
 import { useCart } from '../contexts/CartContext';
-import { SecondaryButton } from '../components/common/Buttons';
-import { Link } from 'react-router-dom';
 import { AddShoppingCart } from '@mui/icons-material';
 import { formatPrice } from '../utils/formatPrice';
 import { QuantityControls } from '../components/common/QuantityControls';
 import { SkeletonCard } from '../components/product/SkeletonCard';
+import { LinkButton } from '../components/common/Buttons';
 
 const StyledAddIcon = styled(AddShoppingCart)`
   margin-left: 25px;
@@ -49,9 +48,35 @@ const ProductInteraction = styled.div`
   align-self: flex-end;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
   margin-top: 2rem;
   margin-bottom: 5rem;
+`;
+
+const StyledLinkButton = styled(LinkButton)`
+  && {
+    margin: 0px;
+    width: 128px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+`;
+
+const StyledQuantityControls = styled(QuantityControls)`
+  && {
+    margin: 0px;
+  }
+`;
+
+const StyledPrimaryButton = styled(PrimaryButton)`
+  && {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 16px 8px 16px;
+  }
 `;
 
 export const ProductPage = () => {
@@ -115,17 +140,19 @@ export const ProductPage = () => {
             <p style={{ marginTop: '1rem' }}>{product.description}</p>
           </div>
           <ProductInteraction>
-            <SecondaryButton as={Link} to="/">
-              Back to Shop
-            </SecondaryButton>
+            <StyledLinkButton to="/">Back to Shop</StyledLinkButton>
             {quantity === 0 ? (
-              <PrimaryButton onClick={() => add({ ...product, quantity: 1 })}>
+              <StyledPrimaryButton
+                onClick={() => add({ ...product, quantity: 1 })}
+              >
                 Add to Cart <StyledAddIcon />
-              </PrimaryButton>
+              </StyledPrimaryButton>
             ) : (
-              <div style={{ marginTop: '-26px' }}>
-                <QuantityControls id={product.id} quantity={quantity} />
-              </div>
+              <StyledQuantityControls
+                id={product.id}
+                quantity={quantity}
+                style={{ marginTop: '0px' }}
+              />
             )}
           </ProductInteraction>
         </ProductDataWrapper>

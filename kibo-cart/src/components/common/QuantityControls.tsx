@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-top: 8px;
+  margin-top: 9px;
   display: flex;
   justify-content: space-between;
   button {
@@ -18,7 +18,7 @@ const Wrapper = styled.div`
     padding: 4px 8px;
     border-radius: 4px;
     cursor: pointer;
-    margin: 10px;
+    margin: 0 10px;
     &:hover {
       background: #ddd;
     }
@@ -53,14 +53,16 @@ const DeleteButton = styled(ControlButton)`
 export const QuantityControls = ({
   id,
   quantity,
-}: {
+  style,
+}: React.HTMLAttributes<HTMLDivElement> & {
   id: number;
   quantity: number;
+  style?: React.CSSProperties;
 }) => {
   const { increment, decrement, remove } = useCart();
 
   return (
-    <Wrapper>
+    <Wrapper style={style}>
       <ControlsWrapper>
         <ControlButton
           aria-label="decrement"

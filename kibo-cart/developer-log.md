@@ -5,19 +5,13 @@ This document describes how AI tools were used throughout the development of the
 
 ## 1. AI Strategy
 
-I used AI tools (Microsoft Copilot, Cursor, Claude, GitHub Copilot) to accelerate development while maintaining full human oversight. My strategy included:
-
-- Providing **clear context** before each request (file structure, component responsibilities, API schemas).
-- Supplying **constraints** (TypeScript strict mode, styled-components, React Router v6).
-- Asking AI to generate **scaffolding**, then refining the output manually.
-- Using AI for **debugging assistance**, especially around routing, context, and TypeScript inference.
-- Using AI to generate **test cases**, then adjusting them for correctness.
-
-This approach allowed me to move quickly while keeping architectural control.
+I used **Microsoft Copilot**, **Claude**, and **Cursor**. I provided clear context and spelled out the features, behaviors, and look I needed, with examples (Amazon’s search bar was one source of inspiration). I read and understood the AI’s suggestions before putting them into the codebase. I often had to refine the output—for example, styled-components CSS, import paths, file structure, and preferring styled-components over inline styles. I also relied on AI for debugging and for setting up linting and other tooling for a solid development experience at the start of the project. I kept a clear roadmap and updated it throughout.
 
 ---
 
 ## 2. Human Audit Moments
+
+I pushed back mainly on the architecture the AI suggested: there was no dedicated “store” file and no Redux-style state management, unlike what I was used to. The AI explained its approach, and I used that as a learning opportunity. I was also the one checking the real UI: I verified the rendered pages, responsiveness, and components, and fixed or adjusted the styling. I replaced most of the AI-generated inline styles with reusable styled-components. I was also responsible for adjusting the roadmap and making trade-offs on initially planned features as the deadline got closer.
 
 ### **Audit #1 — CartContext Refactor**
 AI initially produced a context with unclear responsibilities and mixed concerns.  
@@ -31,19 +25,7 @@ This resulted in a more predictable and testable store.
 
 ---
 
-### **Audit #2 — React Router + ProductPage Integration**
-AI generated a test that failed due to router mocking issues.  
-I identified the real root cause:
-
-- Multiple import paths for the API module  
-- Mock not being applied  
-- Router never rendering ProductPage  
-
-I corrected the import paths, added a Vite alias, and fixed the mock resolution.
-
----
-
-### **Audit #3 — TypeScript Build Errors After Upgrade**
+### **Audit #2 — TypeScript Build Errors After Upgrade**
 AI suggested changes that caused 200+ TypeScript errors.  
 I manually:
 
@@ -54,6 +36,11 @@ I manually:
 - Fixed strict typing in test utilities  
 
 This stabilized the build and allowed deployment.
+
+---
+
+### **Audit #3 — CartPage UI and responsiveness**
+The initial AI output for the cart page had poor UI: there was no “Back to shop” button, and the layout was not responsive. I manually added the “Back to shop” button and improved the layout so the cart page works well on different screen sizes.
 
 ---
 

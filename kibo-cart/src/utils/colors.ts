@@ -20,3 +20,10 @@ export const danger = {
   color: '#ffffff',
   border: '#ccc',
 };
+
+export const productTheme = {
+  cardBorder: '#ddd',
+  cardBackground: '#fff',
+  cardShadow: 'rgba(0, 0, 0, 0.15)',
+  shortDescriptionColor: '#555',
+};

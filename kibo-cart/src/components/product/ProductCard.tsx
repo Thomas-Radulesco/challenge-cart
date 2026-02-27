@@ -20,7 +20,10 @@ const StyledAddIcon = styled(AddShoppingCart)`
 
 const StyledPrimaryButton = styled(PrimaryButton)`
   && {
+    margin-top: 9px;
     position: static;
+    height: 40px;
+    border: 1px solid #ff9900;
   }
 `;
 

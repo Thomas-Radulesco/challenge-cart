@@ -50,6 +50,7 @@ describe('CartPage', () => {
           <Routes>
             <Route path="/cart" element={<CartPage />} />
             <Route path="/" element={<div>Home Page</div>} />
+            <Route path="/product/:id" element={<div>Product Page</div>} />
           </Routes>
         </MemoryRouter>
       </CartContext.Provider>,
@@ -108,5 +109,15 @@ describe('CartPage', () => {
     await user.click(backLink);
 
     expect(screen.getByText('Home Page')).toBeInTheDocument();
+  });
+
+  it('navigates to product page when clicking a cart item', async () => {
+    const user = userEvent.setup();
+    renderWithContext(mockItems);
+
+    const itemLink = screen.getByRole('link', { name: /red shirt/i });
+    await user.click(itemLink);
+
+    expect(screen.getByText('Product Page')).toBeInTheDocument();
   });
 });

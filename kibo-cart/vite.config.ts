@@ -29,6 +29,9 @@ export default defineConfig({
     reporters: ["verbose"],
     globals: true,
     environment: "jsdom",
+    env: {
+      VITE_API_URL: "https://api.example.com",
+    },
     // setupFiles: ["./src/tests/setup.ts", "./src/tests/setup-router-mock.ts"],
     setupFiles: ["./src/tests/setup.ts"],
     include: ["src/tests/**/*.{test,spec}.{ts,tsx}"],

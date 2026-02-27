@@ -40,3 +40,8 @@ export function useCategories() {
 
   return { categories, loading, error };
 }
+
+/** Only for tests: reset in-memory cache so each test gets a fresh fetch. */
+export function __clearCategoriesCacheForTesting(): void {
+  cachedCategories = null;
+}

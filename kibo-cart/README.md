@@ -57,15 +57,13 @@ npm run build
 ### 4. Preview production build
 npm run preview
 
-## 🧪 Testing Instructions
-### Run all tests:
-npm run test
+## 🧪 Testing
 
-### Run tests in watch mode:
-npm run test:watch
+- **Run tests (watch mode):** `npm run test`
+- **Run tests with UI:** `npm run test:ui`
+- **Run tests once with coverage report:** `npm run coverage`
 
-### Coverage:
-npm run coverage
+Coverage outputs a **text summary** in the terminal and an **HTML report** in `coverage/index.html` (open in a browser for a detailed view).
 
 ## 🧠 AI‑Augmentation Log
 See developer-log.md for:

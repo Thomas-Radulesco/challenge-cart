@@ -175,23 +175,6 @@ describe('HomePage', () => {
       expect(cards.length).toBe(2);
     });
 
-    it('DEBUG: check if route matches', () => {
-      const TestComponent = () => {
-        const params = useParams();
-        return <div>Category: {params.name || 'NONE'}</div>;
-      };
-
-      render(
-        <MemoryRouter initialEntries={['/category/electronics']}>
-          <Routes>
-            <Route path="/category/:name" element={<TestComponent />} />
-          </Routes>
-        </MemoryRouter>,
-      );
-
-      screen.debug();
-    });
-
     it('should filter products by category from query param', () => {
       renderWithRouter("/?cat=men's clothing");
 

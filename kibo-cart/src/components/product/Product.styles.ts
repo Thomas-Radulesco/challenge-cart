@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { productTheme } from '@/utils/colors';
 
 export const Card = styled(Link)`
   display: flex;
@@ -7,15 +8,15 @@ export const Card = styled(Link)`
   text-decoration: none;
   color: inherit;
 
-  border: 1px solid #ddd;
+  border: 1px solid ${productTheme.cardBorder};
   border-radius: 8px;
   padding: 12px;
 
-  background: #fff;
+  background: ${productTheme.cardBackground};
   transition: box-shadow 0.2s ease;
 
   &:hover {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 2px 8px ${productTheme.cardShadow};
   }
 `;
 
@@ -43,7 +44,7 @@ export const Title = styled.h3`
 
 export const ShortDescription = styled.p`
   font-size: 0.85rem;
-  color: #555;
+  color: ${productTheme.shortDescriptionColor};
   height: 2.5rem;
   overflow: hidden;
 `;
@@ -52,4 +53,5 @@ export const Price = styled.div`
   margin-top: auto;
   font-weight: bold;
   font-size: 1.1rem;
+  margin-left: auto;
 `;
