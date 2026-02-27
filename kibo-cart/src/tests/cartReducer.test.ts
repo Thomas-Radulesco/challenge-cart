@@ -13,6 +13,9 @@ const mockItem = {
   price: 10,
   quantity: 1,
   image: '',
+  description: 'A very nice product for testing purposes',
+  category: 'test',
+  rating: { rate: 4.5, count: 100 },
 };
 
 describe('cartReducer', () => {

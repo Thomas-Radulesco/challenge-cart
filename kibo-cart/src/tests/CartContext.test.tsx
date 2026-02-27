@@ -13,6 +13,12 @@ const mockItem = {
   price: 10,
   quantity: 1,
   image: '',
+  category: '',
+  description: '',
+  rating: {
+    rate: 2,
+    count: 200,
+  }
 };
 
 describe('CartContext', () => {

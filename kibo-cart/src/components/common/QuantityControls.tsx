@@ -54,7 +54,7 @@ export const QuantityControls = ({
   id,
   quantity,
   style,
-}: React.HTMLAttributes<HTMLDivElement> & {
+}: {
   id: number;
   quantity: number;
   style?: React.CSSProperties;
